@@ -153,19 +153,12 @@ La requête `SELECT * FROM PRODUCT` affiche ensuite l'état final de la base, sa
 
 ![Table PRODUCT dans la base H2](screenshots/h2-table.png)
 
-## 11. Difficultés rencontrées
 
-| Difficulté | Solution |
-|---|---|
-| Option Spring Initializr absente d'IntelliJ | Elle existe seulement dans Ultimate ; en Community, générer le projet sur start.spring.io |
-| Annotations Lombok en rouge | Attendre la fin du téléchargement Maven et recharger le projet |
-| Imprimante absente de la console H2 | Normal : le code la supprime à la dernière étape |
-
-## 12. Conclusion
+## 11. Conclusion
 
 Cette activité a montré la réduction de code permise par JPA, Hibernate et Spring Data : une classe annotée définit une table, et une interface vide hérite de toutes les opérations de gestion des données. Les méthodes dérivées expriment une recherche par le simple nom d'une méthode, et Lombok allège les entités. Pour aller plus loin, il reste à exposer ces opérations dans un contrôleur REST documenté avec OpenAPI, puis à remplacer H2 par MySQL ou PostgreSQL pour obtenir une vraie persistance.
 
-## 13. Exécuter le projet
+## 12. Exécuter le projet
 
 ```bash
 git clone https://github.com/juanito-y/jpa-hibernate-spring-data.git
