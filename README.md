@@ -30,8 +30,6 @@ L'ORM associe une classe Java à une table, un attribut à une colonne et une in
 
 Projet généré avec Spring Initializr : Maven, Java 21, Jar, Group `ma.enset`, Artifact `jpa-product`, avec les dépendances **Spring Web**, **Spring Data JPA**, **H2 Database** et **Lombok**.
 
-![Création du projet](screenshots/initializr.png)
-
 ## 5. Architecture
 
 ```
@@ -46,8 +44,6 @@ jpa-product
 ├── pom.xml
 └── README.md
 ```
-
-![Structure du projet](screenshots/structure.png)
 
 ## 6. Entité Product
 
@@ -136,35 +132,26 @@ public class JpaProductApplication implements CommandLineRunner {
 }
 ```
 
-**Ajout.** Trois produits sont insérés (Ordinateur, Imprimante, Smartphone). `save` avec un `id` nul provoque un `insert`.
+Chaque opération affiche son résultat dans la console au lancement de l'application :
 
-![Ajout](screenshots/ajout.png)
+- **Ajout** : trois produits sont insérés (Ordinateur, Imprimante, Smartphone). `save` avec un `id` nul provoque un `insert`.
+- **Consultation de tous les produits** : `findAll()` retourne la liste complète.
+- **Consultation d'un produit** : `findById(1L)` retourne un `Optional`, ce qui oblige à gérer l'absence de résultat.
+- **Recherche** : `findByNameContains("Or")` retourne l'Ordinateur, `findByPriceGreaterThan(2000)` retourne l'Ordinateur et le Smartphone.
+- **Mise à jour** : `save` sur un objet qui possède déjà un `id` provoque un `update`.
+- **Suppression** : `deleteById(2L)` retire l'Imprimante.
 
-**Consultation de tous les produits.** `findAll()` retourne la liste complète.
-
-![Tous les produits](screenshots/tous.png)
-
-**Consultation d'un produit.** `findById(1L)` retourne un `Optional`, ce qui oblige à gérer l'absence de résultat.
-
-![Un produit](screenshots/un-produit.png)
-
-**Recherche.** `findByNameContains("Or")` retourne l'Ordinateur, `findByPriceGreaterThan(2000)` retourne l'Ordinateur et le Smartphone.
-
-![Recherche](screenshots/recherche.png)
-
-**Mise à jour.** `save` sur un objet qui possède déjà un `id` provoque un `update`.
-
-![Mise à jour](screenshots/maj.png)
-
-**Suppression.** `deleteById(2L)` retire l'Imprimante.
-
-![Suppression](screenshots/suppression.png)
+![Console au lancement de l'application](screenshots/console.png)
 
 ## 10. Console H2
 
-Accessible sur `http://localhost:8082/h2-console` pendant l'exécution (URL JDBC `jdbc:h2:mem:products-db`, utilisateur `sa`, mot de passe vide). La requête `SELECT * FROM PRODUCT` affiche l'état final de la base, sans l'imprimante supprimée.
+La console H2 est accessible sur `http://localhost:8082/h2-console` pendant l'exécution de l'application. Sur la page d'accueil, il faut renseigner l'URL JDBC `jdbc:h2:mem:products-db`, l'utilisateur `sa` et un mot de passe vide, puis cliquer sur **Connect**.
 
-![Console H2](screenshots/h2.png)
+![Page d'accueil de la console H2](screenshots/h2-login.png)
+
+La requête `SELECT * FROM PRODUCT` affiche ensuite l'état final de la base, sans l'imprimante supprimée et avec l'ordinateur mis à jour.
+
+![Table PRODUCT dans la base H2](screenshots/h2-table.png)
 
 ## 11. Difficultés rencontrées
 
